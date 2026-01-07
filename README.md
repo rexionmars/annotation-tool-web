@@ -1,122 +1,148 @@
-# Ferramenta de Anotação de Carcaças - Web
+# Carcass Annotation Tool - Web
 
-Versão web moderna da ferramenta de anotação para segmentação de gordura e músculos em imagens de carcaças, construída com Next.js e shadcn/ui.
+Modern web version of the annotation tool for fat and muscle segmentation in carcass images, built with Next.js and shadcn/ui.
 
-## Características
+![Annotation Tool Interface](docs/images/Screenshot%202026-01-07%20at%2013.03.59.jpeg)
 
-- Interface web moderna e responsiva
-- Anotação por polígonos interativos
-- Suporte para múltiplas imagens
-- Temas claro/escuro
-- Exportação completa de anotações (máscaras + imagens segmentadas)
-- Preview em tempo real das anotações
-- Gerenciamento de estado eficiente com Zustand
+![ROI Selection](docs/images/Screenshot%202026-01-07%20at%2013.04.06.jpeg)
 
-## Tecnologias
+## Features
 
-- **Next.js 15** - Framework React
-- **TypeScript** - Tipagem estática
-- **Tailwind CSS** - Estilização
-- **shadcn/ui** - Componentes de UI
-- **Zustand** - Gerenciamento de estado
-- **Lucide React** - Ícones
-- **JSZip** - Exportação de arquivos
+- Modern and responsive web interface
+- Interactive polygon annotations
+- ROI (Region of Interest) with predefined sizes
+- Multi-image support
+- Light/dark theme toggle
+- Complete annotation export (masks + segmented images + ROI crops)
+- Real-time annotation preview
+- Efficient state management with Zustand
 
-## Instalação
+## Technologies
+
+- **Next.js 15** - React Framework
+- **TypeScript** - Static typing
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - UI Components
+- **Zustand** - State management
+- **Lucide React** - Icons
+- **JSZip** - File export
+
+## Installation
 
 ```bash
-# Instalar dependências
+# Install dependencies
 npm install
 
-# ou com yarn
+# or with yarn
 yarn install
 
-# ou com pnpm
+# or with pnpm
 pnpm install
 ```
 
-## Como Usar
+## Usage
 
-### Desenvolvimento
+### Development
 
 ```bash
 npm run dev
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000) no navegador.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Build para Produção
+### Production Build
 
 ```bash
 npm run build
 npm run start
 ```
 
-## Guia de Uso
+## User Guide
 
-### 1. Upload de Imagens
+### 1. Image Upload
 
-- Clique em "Selecionar Imagens" na tela inicial
-- Escolha uma ou múltiplas imagens de carcaças
-- Formatos suportados: JPG, PNG, BMP, TIFF
+- Click "Select Images" on the home screen
+- Choose one or multiple carcass images
+- Supported formats: JPG, PNG, BMP, TIFF
 
-### 2. Criar Anotações
+### 2. Creating Annotations
 
-1. **Selecionar modo**: Escolha entre "Gordura" (vermelho) ou "Músculo" (azul)
-2. **Desenhar polígono**:
-   - Clique esquerdo para adicionar pontos
-   - Clique direito para finalizar o polígono (mínimo 3 pontos)
-3. **Visualização**: As anotações aparecem com overlay semi-transparente
+1. **Select mode**: Choose between "Fat" (red), "Muscle" (blue), or "ROI" (green)
+2. **Draw polygon** (Fat/Muscle mode):
+   - Left click to add points
+   - Right click to finalize the polygon (minimum 3 points)
+3. **Draw ROI** (ROI mode):
+   - Select a predefined size or "Custom"
+   - Click to place fixed-size ROI, or click and drag for custom ROI
+4. **Visualization**: Annotations appear with semi-transparent overlay
 
-### 3. Controles
+### 3. Controls
 
-#### Modos de Anotação
-- **Gordura**: Anota regiões de gordura (cor vermelha)
-- **Músculo**: Anota regiões de músculo (cor azul)
+#### Annotation Modes
+- **Fat**: Annotate fat regions (red color)
+- **Muscle**: Annotate muscle regions (blue color)
+- **ROI**: Draw regions of interest (green color)
 
-#### Ações do Polígono
-- **Finalizar Polígono**: Completa o polígono atual
-- **Limpar Polígono**: Remove pontos do polígono em andamento
-- **Resetar Anotações**: Remove todas as anotações da imagem atual
+#### ROI Size Presets
+| Size | Description |
+|------|-------------|
+| 32x32 | Small feature patches |
+| 64x64 | Texture analysis |
+| 128x128 | Standard template |
+| 227x227 | AlexNet input |
+| 256x256 | ResNet50 input |
+| 512x512 | High-resolution analysis |
+| Custom | Free-form rectangle |
 
-#### Navegação
-- **Anterior**: Vai para a imagem anterior
-- **Próxima**: Vai para a próxima imagem
+#### Polygon Actions
+- **Finalize Polygon**: Complete the current polygon
+- **Clear Polygon**: Remove points from the polygon in progress
+- **Reset Annotations**: Remove all annotations from the current image
 
-### 4. Exportação
+#### Navigation
+- **Previous**: Go to the previous image
+- **Next**: Go to the next image
 
-Clique em "Exportar Anotações" para baixar um arquivo ZIP contendo:
+### 4. Export
+
+Click "Export Annotations" to download a ZIP file containing:
 
 ```
 annotations_YYYY-MM-DD.zip
-├── fat/                    # Imagens segmentadas de gordura
-│   ├── imagem1_fat.png
-│   └── imagem2_fat.png
-├── muscle/                 # Imagens segmentadas de músculo
-│   ├── imagem1_muscle.png
-│   └── imagem2_muscle.png
-└── masks/                  # Máscaras binárias
-    ├── imagem1_fat_mask.png
-    ├── imagem1_muscle_mask.png
-    ├── imagem2_fat_mask.png
-    └── imagem2_muscle_mask.png
+├── fat/                    # Segmented fat images
+│   ├── image1_fat.png
+│   └── image2_fat.png
+├── muscle/                 # Segmented muscle images
+│   ├── image1_muscle.png
+│   └── image2_muscle.png
+├── masks/                  # Binary masks
+│   ├── image1_fat_mask.png
+│   ├── image1_muscle_mask.png
+│   ├── image2_fat_mask.png
+│   └── image2_muscle_mask.png
+├── roi/                    # ROI masks and metadata
+│   ├── image1_roi_mask.png
+│   └── image1_roi_metadata.json
+└── roi_crops/              # Individual ROI crops
+    ├── image1_roi_1_128x128.png
+    └── image1_roi_2_256x256.png
 ```
 
-### 5. Tema
+### 5. Theme
 
-Use o botão de alternância no canto superior direito para alternar entre modo claro e escuro.
+Use the toggle button in the top right corner to switch between light and dark mode.
 
-## Estrutura do Projeto
+## Project Structure
 
 ```
 annotation-tool-web/
 ├── src/
-│   ├── app/                    # Rotas Next.js
+│   ├── app/                    # Next.js routes
 │   │   ├── layout.tsx
 │   │   ├── page.tsx
 │   │   └── globals.css
-│   ├── components/             # Componentes React
-│   │   ├── ui/                 # Componentes shadcn/ui
+│   ├── components/             # React components
+│   │   ├── ui/                 # shadcn/ui components
 │   │   │   ├── button.tsx
 │   │   │   ├── card.tsx
 │   │   │   └── separator.tsx
@@ -125,72 +151,86 @@ annotation-tool-web/
 │   │   ├── ImageUpload.tsx
 │   │   ├── ExportButton.tsx
 │   │   └── ThemeToggle.tsx
-│   ├── lib/                    # Utilitários
+│   ├── hooks/                  # Custom hooks
+│   │   ├── useCanvasZoom.ts
+│   │   └── useKeyboardShortcuts.ts
+│   ├── lib/                    # Utilities
 │   │   ├── utils.ts
 │   │   └── export.ts
-│   ├── store/                  # Estado global
+│   ├── store/                  # Global state
 │   │   └── annotationStore.ts
-│   └── types/                  # Tipos TypeScript
+│   └── types/                  # TypeScript types
 │       └── annotation.ts
-├── public/                     # Arquivos estáticos
+├── docs/                       # Documentation
+│   └── images/                 # Screenshots
+├── public/                     # Static files
 ├── package.json
 ├── tsconfig.json
 ├── tailwind.config.ts
 └── next.config.mjs
 ```
 
-## Funcionalidades Técnicas
+## Technical Features
 
-### Canvas de Anotação
-- Desenho interativo de polígonos
-- Preview em tempo real do cursor
-- Escalonamento automático para diferentes tamanhos de tela
-- Suporte a múltiplas anotações por imagem
+### Annotation Canvas
+- Interactive polygon drawing
+- Real-time cursor preview
+- Automatic scaling for different screen sizes
+- Support for multiple annotations per image
+- Zoom and pan functionality
 
-### Gerenciamento de Estado
-- Estado global com Zustand
-- Persistência de anotações por imagem
-- Histórico de navegação entre imagens
+### ROI System
+- Predefined sizes for CNN compatibility
+- Custom free-form rectangles
+- Centered placement on click
+- Size labels displayed on ROIs
 
-### Exportação
-- Geração de máscaras binárias (preto/branco)
-- Extração de regiões segmentadas da imagem original
-- Compactação em ZIP para download fácil
+### State Management
+- Global state with Zustand
+- Annotation persistence per image
+- Navigation history between images
 
-## Atalhos de Teclado
+### Export
+- Binary mask generation (black/white)
+- Segmented region extraction from original image
+- ROI cropping with metadata JSON
+- ZIP compression for easy download
 
-### Modos de Anotação
-- `F` - Modo Gordura
-- `M` - Modo Músculo
+## Keyboard Shortcuts
 
-### Controles de Polígono
-- `Enter` - Finalizar polígono
-- `Esc` - Limpar polígono atual
-- `R` - Resetar anotações (com confirmação)
+### Annotation Modes
+- `F` - Fat Mode
+- `M` - Muscle Mode
+- `R` - ROI Mode
 
-### Navegação
-- `→` ou `Seta Direita` - Próxima imagem
-- `←` ou `Seta Esquerda` - Imagem anterior
+### Polygon Controls
+- `Enter` - Finalize polygon
+- `Esc` - Clear current polygon / Cancel ROI
 
-### Zoom e Visualização
-- `Scroll do Mouse` - Zoom in/out
+### Navigation
+- `Right Arrow` - Next image
+- `Left Arrow` - Previous image
+
+### Zoom and View
+- `Mouse Scroll` - Zoom in/out
 - `Cmd/Ctrl + +` - Zoom in
 - `Cmd/Ctrl + -` - Zoom out
-- `Cmd/Ctrl + 0` - Resetar zoom
-- `Espaço + Arrastar` - Mover imagem (pan)
-- `Botão do Meio + Arrastar` - Mover imagem (pan)
+- `Cmd/Ctrl + 0` - Reset zoom
+- `Space + Drag` - Pan image
+- `Middle Button + Drag` - Pan image
 
-### Exportação
-- `Cmd/Ctrl + S` - Salvar/Exportar anotações
+### Export
+- `Cmd/Ctrl + S` - Save/Export annotations
 
-## Contribuindo
+## Contributing
 
-Este é um projeto acadêmico da UFPI. Sugestões e melhorias são bem-vindas.
+This is an academic project from iCEV. Suggestions and improvements are welcome.
 
-## Licença
+## License
 
 MIT
 
-## Autor
+## Author
 
-Desenvolvido para o curso de [seu curso] - UFPI
+**Joao Leonardi**
+Computer Vision Research Center, iCEV Institute of Higher Education, Teresina, Brazil

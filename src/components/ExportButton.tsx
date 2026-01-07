@@ -16,7 +16,7 @@ export function ExportButton() {
       await exportAnnotations(images, annotations);
     } catch (error) {
       console.error("Error exporting annotations:", error);
-      alert("Erro ao exportar anotações. Verifique o console.");
+      alert("Error exporting annotations. Check console for details.");
     } finally {
       setIsExporting(false);
     }
@@ -30,7 +30,7 @@ export function ExportButton() {
       className="bg-green-600 hover:bg-green-700"
     >
       <Download className="mr-2 h-4 w-4" />
-      {isExporting ? "Exportando..." : "Exportar Anotações"}
+      {isExporting ? "Exporting..." : "Export Annotations"}
     </Button>
   );
 }

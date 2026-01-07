@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ferramenta de Anotação de Carcaças",
+  title: "Carcass Annotation Tool",
   description:
-    "Ferramenta web para segmentação de gordura e músculos em imagens de carcaças",
+    "Web tool for fat and muscle segmentation in carcass images",
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" suppressHydrationWarning>
+    <html lang="en-US" suppressHydrationWarning>
       <body className={inter.className}>{children}</body>
     </html>
   );

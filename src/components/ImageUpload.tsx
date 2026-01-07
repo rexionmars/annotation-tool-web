@@ -26,9 +26,9 @@ export function ImageUpload() {
       <div className="flex flex-col items-center gap-4">
         <Upload className="h-12 w-12 text-muted-foreground" />
         <div className="text-center">
-          <h3 className="font-semibold text-lg mb-1">Upload de Imagens</h3>
+          <h3 className="font-semibold text-lg mb-1">Image Upload</h3>
           <p className="text-sm text-muted-foreground">
-            Selecione imagens de carcaças para anotar
+            Select carcass images to annotate
           </p>
         </div>
         <input
@@ -41,10 +41,10 @@ export function ImageUpload() {
         />
         <Button onClick={handleButtonClick} size="lg">
           <Upload className="mr-2 h-4 w-4" />
-          Selecionar Imagens
+          Select Images
         </Button>
         <p className="text-xs text-muted-foreground text-center">
-          Formatos suportados: JPG, PNG, BMP, TIFF
+          Supported formats: JPG, PNG, BMP, TIFF
         </p>
       </div>
     </Card>

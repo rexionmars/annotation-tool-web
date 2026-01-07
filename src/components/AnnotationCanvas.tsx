@@ -416,7 +416,7 @@ export function AnnotationCanvas() {
     return (
       <div className="flex items-center justify-center h-full bg-muted rounded-lg">
         <p className="text-muted-foreground">
-          Nenhuma imagem carregada. Faça upload de imagens para começar.
+          No images loaded. Upload images to start.
         </p>
       </div>
     );
@@ -435,8 +435,8 @@ export function AnnotationCanvas() {
       <div className="absolute bottom-4 left-4 z-10 bg-background/80 backdrop-blur-sm px-3 py-1.5 rounded-md text-xs text-muted-foreground border shadow-sm">
         <div className="flex flex-col gap-0.5">
           <span>Scroll: Zoom</span>
-          <span>Espaço + Arrastar: Mover</span>
-          <span>Cmd/Ctrl + 0: Resetar zoom</span>
+          <span>Space + Drag: Pan</span>
+          <span>Cmd/Ctrl + 0: Reset zoom</span>
         </div>
       </div>
 

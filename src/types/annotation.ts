@@ -13,15 +13,14 @@ export interface Polygon {
 }
 
 /**
- * ROI (Region of Interest) predefined sizes based on NASA JPL standards
- * Reference: NASA JPL TRN (Terrain Relative Navigation) and Mars rover imaging
+ * ROI (Region of Interest) predefined sizes
  *
  * Sizes follow power-of-2 pattern for GPU memory alignment and CNN compatibility:
  * - 32x32: Small feature patches, fine detail extraction
  * - 64x64: Texture analysis, small object detection
- * - 128x128: TRN descent image templates (NASA JPL standard)
- * - 227x227: HiRISE landmark extraction standard
- * - 256x256: MSL Curiosity browse images, ResNet50 input standard
+ * - 128x128: Standard template size
+ * - 227x227: AlexNet input standard
+ * - 256x256: ResNet50 input standard
  * - 512x512: High-resolution analysis patches
  */
 export type ROISizePreset =
@@ -57,19 +56,19 @@ export const ROI_SIZE_PRESETS: Record<ROISizePreset, ROISize> = {
     width: 128,
     height: 128,
     label: "128x128",
-    description: "TRN template (NASA JPL)"
+    description: "Standard template"
   },
   "227x227": {
     width: 227,
     height: 227,
     label: "227x227",
-    description: "HiRISE landmark standard"
+    description: "AlexNet input"
   },
   "256x256": {
     width: 256,
     height: 256,
     label: "256x256",
-    description: "MSL browse / ResNet50"
+    description: "ResNet50 input"
   },
   "512x512": {
     width: 512,

@@ -72,10 +72,10 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold">
-                Ferramenta de Anotação de Carcaças
+                Carcass Annotation Tool
               </h1>
               <p className="text-sm text-muted-foreground">
-                Segmentacao de gordura, musculos e ROIs em imagens
+                Fat, muscle and ROI segmentation in images
               </p>
             </div>
             <div className="flex items-center gap-2">

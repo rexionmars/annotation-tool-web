@@ -50,7 +50,7 @@ export function Toolbar() {
           {hasImages ? (
             <div>
               <p className="text-sm font-medium">
-                Imagem {currentImageIndex + 1} de {images.length}
+                Image {currentImageIndex + 1} of {images.length}
               </p>
               <p className="text-xs text-muted-foreground truncate">
                 {currentImage?.name}
@@ -58,7 +58,7 @@ export function Toolbar() {
             </div>
           ) : (
             <p className="text-sm text-muted-foreground">
-              Nenhuma imagem carregada
+              No images loaded
             </p>
           )}
         </div>
@@ -67,7 +67,7 @@ export function Toolbar() {
 
         {/* Annotation Mode */}
         <div>
-          <p className="text-sm font-medium mb-2">Modo de Anotacao</p>
+          <p className="text-sm font-medium mb-2">Annotation Mode</p>
           <div className="grid grid-cols-3 gap-2">
             <Button
               variant={annotationType === "fat" ? "default" : "outline"}
@@ -77,7 +77,7 @@ export function Toolbar() {
               )}
               size="sm"
             >
-              Gordura
+              Fat
             </Button>
             <Button
               variant={annotationType === "muscle" ? "default" : "outline"}
@@ -87,7 +87,7 @@ export function Toolbar() {
               )}
               size="sm"
             >
-              Musculo
+              Muscle
             </Button>
             <Button
               variant={annotationType === "roi" ? "default" : "outline"}
@@ -108,7 +108,7 @@ export function Toolbar() {
           <>
             <Separator />
             <div>
-              <p className="text-sm font-medium mb-2">Tamanho ROI (NASA JPL)</p>
+              <p className="text-sm font-medium mb-2">ROI Size</p>
               <div className="grid grid-cols-2 gap-1">
                 {(Object.keys(ROI_SIZE_PRESETS) as ROISizePreset[]).map((preset) => {
                   const size = ROI_SIZE_PRESETS[preset];
@@ -135,8 +135,8 @@ export function Toolbar() {
               </div>
               <p className="text-[10px] text-muted-foreground mt-2">
                 {roiSizePreset === "custom"
-                  ? "Clique e arraste para desenhar"
-                  : "Clique para posicionar o ROI"}
+                  ? "Click and drag to draw"
+                  : "Click to place ROI"}
               </p>
             </div>
           </>
@@ -147,7 +147,7 @@ export function Toolbar() {
         {/* Polygon/ROI Actions */}
         <div>
           <p className="text-sm font-medium mb-2">
-            {annotationType === "roi" ? "Acoes ROI" : "Acoes do Poligono"}
+            {annotationType === "roi" ? "ROI Actions" : "Polygon Actions"}
           </p>
           <div className="flex flex-col gap-2">
             {annotationType !== "roi" && (
@@ -160,7 +160,7 @@ export function Toolbar() {
                   className="justify-start"
                 >
                   <CheckCircle className="mr-2 h-4 w-4" />
-                  Finalizar Poligono
+                  Finalize Polygon
                 </Button>
                 <Button
                   variant="outline"
@@ -170,7 +170,7 @@ export function Toolbar() {
                   className="justify-start"
                 >
                   <Eraser className="mr-2 h-4 w-4" />
-                  Limpar Poligono
+                  Clear Polygon
                 </Button>
               </>
             )}
@@ -182,7 +182,7 @@ export function Toolbar() {
                 className="justify-start"
               >
                 <Eraser className="mr-2 h-4 w-4" />
-                Cancelar ROI
+                Cancel ROI
               </Button>
             )}
             <Button
@@ -193,7 +193,7 @@ export function Toolbar() {
               className="justify-start"
             >
               <Trash2 className="mr-2 h-4 w-4" />
-              Resetar Anotacoes
+              Reset Annotations
             </Button>
           </div>
         </div>
@@ -203,14 +203,14 @@ export function Toolbar() {
           <>
             <Separator />
             <div>
-              <p className="text-sm font-medium mb-2">Estatisticas</p>
+              <p className="text-sm font-medium mb-2">Statistics</p>
               <div className="text-xs text-muted-foreground space-y-1">
                 <div className="flex justify-between">
-                  <span>Poligonos (Gordura):</span>
+                  <span>Polygons (Fat):</span>
                   <span>{currentAnnotation.polygons.filter(p => p.type === "fat").length}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Poligonos (Musculo):</span>
+                  <span>Polygons (Muscle):</span>
                   <span>{currentAnnotation.polygons.filter(p => p.type === "muscle").length}</span>
                 </div>
                 <div className="flex justify-between">
@@ -226,7 +226,7 @@ export function Toolbar() {
 
         {/* Navigation */}
         <div>
-          <p className="text-sm font-medium mb-2">Navegação</p>
+          <p className="text-sm font-medium mb-2">Navigation</p>
           <div className="grid grid-cols-2 gap-2">
             <Button
               variant="outline"
@@ -235,7 +235,7 @@ export function Toolbar() {
               disabled={!canGoPrevious}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
-              Anterior
+              Previous
             </Button>
             <Button
               variant="outline"
@@ -243,7 +243,7 @@ export function Toolbar() {
               onClick={nextImage}
               disabled={!canGoNext}
             >
-              Próxima
+              Next
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -253,34 +253,34 @@ export function Toolbar() {
 
         {/* Keyboard Shortcuts */}
         <div className="text-xs text-muted-foreground space-y-1">
-          <p className="font-medium">Atalhos de Teclado:</p>
+          <p className="font-medium">Keyboard Shortcuts:</p>
           <div className="space-y-0.5">
             <div className="flex justify-between">
-              <span>Modo Gordura:</span>
+              <span>Fat Mode:</span>
               <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">F</kbd>
             </div>
             <div className="flex justify-between">
-              <span>Modo Musculo:</span>
+              <span>Muscle Mode:</span>
               <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">M</kbd>
             </div>
             <div className="flex justify-between">
-              <span>Modo ROI:</span>
+              <span>ROI Mode:</span>
               <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">R</kbd>
             </div>
             <div className="flex justify-between">
-              <span>Finalizar:</span>
+              <span>Finalize:</span>
               <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">Enter</kbd>
             </div>
             <div className="flex justify-between">
-              <span>Limpar:</span>
+              <span>Clear:</span>
               <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">Esc</kbd>
             </div>
             <div className="flex justify-between">
-              <span>Navegar:</span>
-              <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">setas</kbd>
+              <span>Navigate:</span>
+              <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">Arrows</kbd>
             </div>
             <div className="flex justify-between">
-              <span>Salvar:</span>
+              <span>Save:</span>
               <kbd className="px-1 py-0.5 bg-muted rounded text-[10px]">Cmd+S</kbd>
             </div>
             <div className="flex justify-between">
